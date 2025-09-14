@@ -14,7 +14,7 @@ BASE = Packages(
         	"timeshift", "sddm", "qt5-graphicaleffects", "qt5-svg",  "qt5-quickcontrols2", "clipnotify",
 			"xdg-desktop-portal-gtk", "gnome-disk-utility", "evince", "neovim", "tmux", "cowsay", "polkit-gnome",
 			"rofimoji", "wmname", "pyenv", "xdg-desktop-portal", "ttf-hack-nerd", "networkmanager", "noto-fonts", 
-            "noto-fonts-cjk", "noto-fonts-emoji", "noto-fonts-extra", "flameshot", "rofi-wayland", "mpv"
+            "noto-fonts-cjk", "noto-fonts-emoji", "noto-fonts-extra", "flameshot", "rofi-wayland", "mpv", "piper"
 		],
 		bspwm_packages=["xorg", "bspwm", "sxhkd", "xorg-xinit", "xclip", "feh", "lxappearance", "polybar", "xorg-xrandr", "xsettingsd"],
 		hyprland_packages=[
