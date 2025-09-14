@@ -167,8 +167,11 @@ class FileSystemManager:
         shutil.copy(src=Path("./home/.bashrc"), dst=home / ".bashrc")
         shutil.copy(src=Path("./home/.env"), dst=home / ".env")
 
-        if not exclude_bspwm:
+        # Копируем Xresources для hyprland
+        if not exclude_hyprland:
             shutil.copy(src=Path("./home/.Xresources"), dst=home / ".Xresources")
+        
+        if not exclude_bspwm:
             shutil.copy(src=Path("./home/.xinitrc"), dst=home / ".xinitrc")
 
         destination = home / ".icons" / "default" / "index.theme"

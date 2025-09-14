@@ -32,3 +32,4 @@ class Theme:
 	name: str
 	available_wallpapers: List[Path]
 	icon: Path
+	available_videos: List[Path] = field(default_factory=list)

@@ -102,11 +102,11 @@ class Question:
                 default="Yes",
                 carousel=True,
             ),
-            QuestionCheckbox(
+            QuestionList(
                 name="install_wm",
-                message="2) Which window manager do you want to install?",
-                choices=["hyprland", "bspwm"],
-                default=["bspwm", "hyprland"],
+                message="2) Window manager will be installed:",
+                choices=["hyprland"],
+                default="hyprland",
                 carousel=True,
             ),
             QuestionList(
@@ -163,8 +163,8 @@ class Question:
 
         return BuildOptions(
             make_backup=answers["make_backup"] == "Yes",
-            install_bspwm="bspwm" in answers["install_wm"],
-            install_hyprland="hyprland" in answers["install_wm"],
+            install_bspwm=False,
+            install_hyprland=True,
             aur_helper=aur_helper,
             enable_multilib=answers["enable_multilib"] == "Yes",
             update_arch_database=answers["update_arch_database"] == "Yes",

@@ -22,7 +22,10 @@ def setting_args(parser: ArgumentParser):
 
 			"\"set-random-wallpaper\": Random wallpapers are set, which are allowed in the theme.\n" \
 			"\"select-wallpaper\": A Rofi menu with a selection of wallpapers and their subsequent installation.\n" \
-			"\"select-theme\": Rofi menu with theme selection and its subsequent installation."
+			"\"select-theme\": Rofi menu with theme selection and its subsequent installation.\n" \
+			"\"set-mpv-video\": Set a video wallpaper using mpv from the specified path.\n" \
+			"\"set-random-mpv-video\": Set a random video wallpaper using mpv from the current theme.\n" \
+			"\"select-mpv-video\": A Rofi menu with a selection of video wallpapers using mpv."
 	)
 
 	auxiliary_group = parser.add_argument_group('Auxiliary arguments')
@@ -88,6 +91,18 @@ if __name__ == '__main__':
 
 	elif args.action == "select-theme":
 		theme_manager.select_theme()
+
+	elif args.action == "set-mpv-video":
+		if args.path:
+			theme_manager.set_mpv_video(args.path)
+		else:
+			logging.error("The \"path\" parameter is required for the \"set-mpv-video\" action.")
+
+	elif args.action == "set-random-mpv-video":
+		theme_manager.set_random_mpv_video()
+
+	elif args.action == "select-mpv-video":
+		theme_manager.select_mpv_video()
 
 	else:
 		logging.debug(f"Unknown action: {args.action}")

@@ -79,7 +79,7 @@ class Config:
 		return theme
 
 	@staticmethod
-	def _validate_theme(theme_name: str, wallpapers: List[str]) -> Optional[Theme]:
+	def _validate_theme(theme_name: str, wallpapers: List[str], videos: List[str] = None) -> Optional[Theme]:
 		"""
 		Проверяет, правильно ли укомплектована тема. 
 		Если да, то возвращает Theme
@@ -88,6 +88,7 @@ class Config:
 		Args:
 			theme_name: str - Название темы, которую нужно проверить.
 			wallpapers: List[str] - Список путей до обоев
+			videos: List[str] - Список путей до видеообоев
 		"""
 		path_to_theme: Path = MEOWRCH_DIR / "themes" / theme_name
 		icon = MEOWRCH_ASSETS / "default-theme-icon.png"
@@ -99,6 +100,12 @@ class Config:
 			logging.error(f"No available wallpapers for theme {theme_name}")
 			return
 
+		##==> Проверка наличия видеообоев
+		###########################################
+		if videos is None:
+			videos = []
+		videos = [video for video in videos if Path(video).exists()]
+
 		##==> Проверка наличия иконки
 		###########################################
 		path_to_theme_icon: Path = path_to_theme/f"{theme_name}.png"
@@ -108,7 +115,8 @@ class Config:
 		return Theme(
 			name=theme_name,
 			available_wallpapers=wallpapers,
-			icon=icon
+			icon=icon,
+			available_videos=videos
 		)
 
 	@classmethod
@@ -139,7 +147,14 @@ class Config:
 			wallpapers.extend(custom_wallpapers)
 			wallpapers.extend(available_wallpapers)
 
-			theme: Optional[Theme] = cls._validate_theme(theme_name=theme_name, wallpapers=wallpapers)
+			# Загружаем видеообои
+			videos = []
+			available_videos = params.get('available_videos', [])
+			if available_videos is not None:
+				available_videos = parse_wallpapers(available_videos)
+				videos.extend(available_videos)
+
+			theme: Optional[Theme] = cls._validate_theme(theme_name=theme_name, wallpapers=wallpapers, videos=videos)
 
 			if theme is not None:
 				themes.append(theme)

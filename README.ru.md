@@ -40,16 +40,16 @@
 	    <td><a href="https://archlinux.org/">Arch Linux</a></td>
 	</tr>
 	<tr>
-	    <td>WM</td>
-	    <td><a href="https://github.com/baskerville/bspwm">BSPWM</a> | <a href="https://hyprland.org/">Hyprland</a></td>
+		<td>WM</td>
+		<td><a href="https://hyprland.org/">Hyprland</a></td>
 	</tr>
 	<tr>
-	    <td>Bar</td>
-	    <td><a href="https://github.com/polybar/polybar">Polybar</a> | <a href="https://github.com/Alexays/Waybar">Waybar</a></td>
+		<td>Bar</td>
+		<td><a href="https://github.com/Alexays/Waybar">Waybar</a></td>
 	</tr>
 	<tr>
-	    <td>Compositor</td>
-	    <td><a href="https://github.com/yshui/picom">Picom</a> | Built-in</td>
+		<td>Compositor</td>
+		<td>Built-in</td>
 	</tr>
 	<tr>
 	    <td>Terminal</td>

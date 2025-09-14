@@ -1,8 +1,18 @@
 current-wtheme: catppuccin-mocha
-current-wwallpaper: ~/.config/meowrch/wallpapers/42.png
+current-wvideo: null
+current-wwallpaper: /home/pavel/.config/meowrch/wallpapers/02.png
 current-xtheme: catppuccin-mocha
+current-xvideo: null
 current-xwallpaper: ~/.config/meowrch/wallpapers/42.png
+custom-videos:
+- ~/.config/meowrch/videos/sample.mp4
+- ~/.config/meowrch/videos/sample.webm
+- ~/.config/meowrch/videos/totoro.mp4
 custom-wallpapers:
+- ~/.config/meowrch/wallpapers/01.png
+- ~/.config/meowrch/wallpapers/02.png
+- ~/.config/meowrch/wallpapers/03.png
+- ~/.config/meowrch/wallpapers/04.png
 - ~/.config/meowrch/wallpapers/4.png
 - ~/.config/meowrch/wallpapers/5.png
 - ~/.config/meowrch/wallpapers/7.png
@@ -15,6 +25,9 @@ custom-wallpapers:
 - ~/.config/meowrch/wallpapers/46.png
 themes:
   catppuccin-latte:
+    available_videos:
+    - ~/.config/meowrch/videos/light-theme.mp4
+    - ~/.config/meowrch/videos/light-theme.webm
     available_wallpapers:
     - ~/.config/meowrch/wallpapers/1.png
     - ~/.config/meowrch/wallpapers/2.png
@@ -32,6 +45,10 @@ themes:
     - ~/.config/meowrch/wallpapers/33.png
     - ~/.config/meowrch/wallpapers/34.png
   catppuccin-mocha:
+    available_videos:
+    - ~/.config/meowrch/videos/dark-theme.mp4
+    - ~/.config/meowrch/videos/dark-theme.webm
+    - ~/.config/meowrch/videos/totoro.mp4
     available_wallpapers:
     - ~/.config/meowrch/wallpapers/6.png
     - ~/.config/meowrch/wallpapers/9.png

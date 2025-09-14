@@ -37,8 +37,8 @@ class Builder:
 
         FileSystemManager.create_default_folders()
         FileSystemManager.copy_dotfiles(
-            exclude_bspwm=not self.build_options.install_bspwm,
-            exclude_hyprland=not self.build_options.install_hyprland,
+            exclude_bspwm=True,
+            exclude_hyprland=False,
         )
 
         PackageManager.update_pacman_conf(
@@ -102,10 +102,9 @@ class Builder:
                 else:
                     pacman.append(package)
 
-        for wm in ["bspwm", "hyprland"]:
-            if getattr(self.build_options, f"install_{wm}"):
-                pacman.extend(getattr(BASE.pacman, f"{wm}_packages"))
-                aur.extend(getattr(BASE.aur, f"{wm}_packages"))
+        # Устанавливаем только hyprland
+        pacman.extend(BASE.pacman.hyprland_packages)
+        aur.extend(BASE.aur.hyprland_packages)
 
         # Устанавливаем pacman пакеты
         self.not_installed_packages.pacman.extend(
