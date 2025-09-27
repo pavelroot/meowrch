@@ -1,29 +1,34 @@
 {
     "layer": "top",
-    "position": "top",
+    "position": "left",
     "mod": "dock",
-    "height": 34,
-    "exclusive": true,
+    "width": 34,
+    "exclusive": false,
     "passthrough": false,
     "gtk-layer-shell": true,
     "reload_style_on_change": true,
+    "margin-top": 6,
+    "margin-bottom": 6,
+    "margin-left": 4,
 
     //==> Modules Layout
     ///////////////////////////////////////////////////////////////
 	"modules-left": [
-		"custom/l_end","tray","custom/r_end","custom/l_end","hyprland/workspaces","custom/r_end","custom/l_end","wlr/taskbar","custom/r_end","custom/padd"
+		"tray",
+		"hyprland/workspaces",
+		"wlr/taskbar",
+		"hyprland/language"
 	],
 	"modules-center": [
 		"group/system-info"
 	],
 	"modules-right": [
 		"group/system-levels",
-		"custom/l_end","idle_inhibitor","clock","custom/r_end",
-        "custom/l_end","hyprland/language","custom/r_end",
-		"group/control-panel", "custom/padd"
+		"group/clock-block",
+		"group/control-panel"
 	],
-    "group/system-info": {
-		"orientation": "horizontal",
+	"group/system-info": {
+		"orientation": "vertical",
 		"modules": [
 			"custom/cpu",
 			"custom/ram",
@@ -31,7 +36,7 @@
 		]
 	},
 	"group/system-levels": {
-		"orientation": "horizontal",
+		"orientation": "vertical",
 		"modules": [
 			"custom/brightness",
 			"custom/battery",
@@ -39,17 +44,24 @@
 			"custom/microphone"
 		]
 	},
+	"group/clock-block": {
+		"orientation": "vertical",
+		"modules": [
+			"idle_inhibitor",
+			"clock"
+		]
+	},
 	"group/control-panel": {
-		"orientation": "horizontal",
+		"orientation": "vertical",
 		"modules": [
 			"custom/system-update",
 			"custom/do-not-disturb",
-			"custom/vpn",
 			"custom/bluetooth",
 			"custom/networkmanager",
 			"custom/power"
 		]
 	},
+        
     //==> Left Modules
     ///////////////////////////////////////////////////////////////
     "tray": {
@@ -85,28 +97,28 @@
 
     //==> Middle Modules
     ///////////////////////////////////////////////////////////////
-	"custom/cpu": {
-		"exec": "python ~/bin/system-info.py --cpu --normal-color \"#ea76cb\" --critical-color \"#e64553\" | cat",
-		"on-click": "python ~/bin/system-info.py --cpu --click",
+    "custom/cpu": {
+		"exec": "python ~/bin/system-info-vertical.py --cpu --normal-color \"#1e66f5\" --critical-color \"#e64553\" | cat",
+		"on-click": "python ~/bin/system-info-vertical.py --cpu --click",
 		"return-type": "json",
-		"format": "{}  ",
+		"format": " {}",
 		"rotate": 0,
 		"interval": 2,
 		"tooltip": true
 	},
-	"custom/ram": {
-		"exec": "python ~/bin/system-info.py --ram --normal-color \"#fe640b\" --critical-color \"#e64553\" | cat",
+    "custom/ram": {
+		"exec": "python ~/bin/system-info-vertical.py --ram --normal-color \"#fe640b\" --critical-color \"#e64553\" | cat",
 		"return-type": "json",
-		"format": "{}  ",
+		"format": " {}",
 		"rotate": 0,
 		"interval": 2,
 		"tooltip": true
 	},
-	"custom/gpu": {
-		"exec": "python ~/bin/system-info.py --gpu --normal-color \"#dc8a78\" --critical-color \"#e64553\" | cat",
-		"on-click": "python ~/bin/system-info.py --gpu --click",
+    "custom/gpu": {
+		"exec": "python ~/bin/system-info-vertical.py --gpu --normal-color \"#dc8a78\" --critical-color \"#e64553\" | cat",
+		"on-click": "python ~/bin/system-info-vertical.py --gpu --click",
 		"return-type": "json",
-		"format": "{}",
+		"format": " {}",
 		"rotate": 0,
 		"interval": 2,
 		"tooltip": true
@@ -115,9 +127,9 @@
     //==> Right Modules
     ///////////////////////////////////////////////////////////////
     "clock": {
-        "format": "{:%H:%M %p}",
+        "format": "<span size=\"x-large\">{:%I\n%M\n%p}</span>",
         "rotate": 0,
-        "format-alt": "{:%R | 󰃭 %d·%m·%y}",
+        
         "tooltip-format": "<tt>{calendar}</tt>",
         "calendar": {
             "mode": "month",
@@ -147,48 +159,50 @@
         }
     },
     "custom/battery": {
-        "exec": "sh ~/bin/battery.sh --status --discharged-color \"#e64553\" --charged-color \"#40a02b\" | cat",
-        "return-type": "raw",
-	    "format": "{}  ",
+        "exec": "sh ~/bin/battery-vertical.sh --status --discharged-color \"#e64553\" --charged-color \"#40a02b\" | cat",
+        "return-type": "json",
+        "format": " {}",
         "interval": 3,
-	    "rotate": 0,
-	    "on-click": "sh ~/bin/battery.sh --notify",
+        "rotate": 0,
+        "on-click": "sh ~/bin/battery-vertical.sh --notify",
+        "on-scroll-up": "true",
+        "on-scroll-down": "true",
         "tooltip": false
     },
     "custom/brightness": {
-        "exec": "sh ~/bin/brightness.sh --status --color \"#1e66f5\" | cat",
-        "return-type": "raw",
-        "format": "{}  ",
+        "exec": "sh ~/bin/brightness-vertical.sh --status --color \"#1e66f5\" | cat",
+        "return-type": "json",
+        "format": "&#x2004;{}",
         "interval": 1,
         "rotate": 0,
-        "on-scroll-up": "sh ~/bin/brightness.sh --up",
-        "on-scroll-down": "sh ~/bin/brightness.sh --down",
-        "on-click-left": "sh ~/bin/brightness.sh --max",
-        "on-click-right": "sh ~/bin/brightness.sh --min",
+        "on-scroll-up": "sh ~/bin/brightness-vertical.sh --up",
+        "on-scroll-down": "sh ~/bin/brightness-vertical.sh --down",
+        "on-click-left": "sh ~/bin/brightness-vertical.sh --max",
+        "on-click-right": "sh ~/bin/brightness-vertical.sh --min",
         "tooltip": false
     },
-	"custom/volume": {
-        "exec": "sh ~/bin/volume.sh --device output --status --disabled-color \"#e64553\" --enabled-color \"#40a02b\" | cat",
-        "return-type": "raw",
-	    "format": "{}  ",
+    "custom/volume": {
+        "exec": "sh ~/bin/volume-vertical.sh --device output --status --disabled-color \"#e64553\" --enabled-color \"#40a02b\" | cat",
+        "return-type": "json",
+    	"format": " {}",
         "interval": 1,
-	    "rotate": 0,
-	    "on-click": "sh ~/bin/volume.sh --device output --action toggle",
-	    "on-scroll-up": "sh ~/bin/volume.sh --device output --action increase",
-	    "on-scroll-down": "sh ~/bin/volume.sh --device output --action decrease",
-	    "scroll-step": 5,
+    	"rotate": 0,
+    	"on-click": "sh ~/bin/volume-vertical.sh --device output --action toggle",
+    	"on-scroll-up": "sh ~/bin/volume-vertical.sh --device output --action increase",
+    	"on-scroll-down": "sh ~/bin/volume-vertical.sh --device output --action decrease",
+    	"scroll-step": 5,
         "tooltip": false
 	},
     "custom/microphone": {
-        "exec": "sh ~/bin/volume.sh --device input --status --disabled-color \"#e64553\" --enabled-color \"#40a02b\" | cat",
-        "return-type": "raw",
-	    "format": "{}",
+        "exec": "sh ~/bin/volume-vertical.sh --device input --status --disabled-color \"#e64553\" --enabled-color \"#40a02b\" | cat",
+        "return-type": "json",
+    	"format": " {}",
         "interval": 1,
-	    "rotate": 0,
-	    "on-click": "sh ~/bin/volume.sh --device input --action toggle",
-	    "on-scroll-up": "sh ~/bin/volume.sh --device input --action increase",
-	    "on-scroll-down": "sh ~/bin/volume.sh --device input --action decrease",
-	    "scroll-step": 5,
+    	"rotate": 0,
+    	"on-click": "sh ~/bin/volume-vertical.sh --device input --action toggle",
+    	"on-scroll-up": "sh ~/bin/volume-vertical.sh --device input --action increase",
+    	"on-scroll-down": "sh ~/bin/volume-vertical.sh --device input --action decrease",
+    	"scroll-step": 5,
         "tooltip": false
 	},
 	"hyprland/language": {
@@ -198,9 +212,9 @@
         "tooltip": false
     },
     "custom/system-update": {
-        "exec": "sh ~/bin/system-update.sh --status --unupdated-color \"#df8e1d\" --updated-color \"#40a02b\" | cat",
-        "return-type": "raw",
-        "format": "{} ",
+        "exec": "sh ~/bin/system-update-vertical.sh --status --unupdated-color \"#df8e1d\" --updated-color \"#40a02b\" | cat",
+        "return-type": "json",
+        "format": "&#x2004;&#x200A;<span size=\"x-large\">{} </span>",
         "rotate": 0,
         "on-click": "CHECKUPDATES_DB=\"/tmp/checkup-db-${UID}-$$\" sh ~/bin/system-update.sh",
         "interval": 86400,
@@ -209,7 +223,7 @@
     "custom/do-not-disturb": {
         "exec": "sh ~/bin/do-not-disturb.sh --status --disabled-color \"#e64553\" --enabled-color \"#40a02b\" | cat",
         "return-type": "raw",
-        "format": "{} ",
+        "format": "&#x2004;<span size=\"x-large\">{}</span>",
         "interval": 1,
         "rotate": 0,
         "on-click": "sh ~/bin/do-not-disturb.sh",
@@ -218,14 +232,14 @@
     "custom/vpn": {
         "exec": "sh ~/bin/rofi-menus/vpn-manager.sh --status --disabled-color \"#e64553\" --enabled-color \"#40a02b\" | cat",
         "return-type": "raw",
-        "format": "{} ",
+        "format": "&#x2004;<span size=\"x-large\">{}</span>",
         "interval": 3,
         "rotate": 0,
         "on-click": "sh ~/bin/rofi-menus/vpn-manager.sh",
         "tooltip": false
     },
     "custom/bluetooth": {
-        "format": "<span color=\"#1e66f5\">󰂯  </span>",
+        "format": " &#x2009;<span color=\"#1e66f5\" size=\"x-large\">󰂯 </span>",
         "interval": 3,
         "rotate": 0,
         "on-click": "blueman-manager",
@@ -234,7 +248,7 @@
     "custom/networkmanager": {
         "exec": "sh ~/bin/rofi-menus/network-manager.sh --status --disabled-color \"#e64553\" --enabled-color \"#40a02b\" | cat",
         "return-type": "raw",
-        "format": "{}  ",
+        "format": "&#x2004;<span size=\"x-large\">{}</span>",
         "interval": 3,
         "rotate": 0,
         "on-click": "sh ~/bin/rofi-menus/network-manager.sh",
@@ -242,7 +256,7 @@
     },
     "custom/power": {
         "on-click": "sh ~/bin/rofi-menus/powermenu.sh",
-        "format": "<span color=\"#e64553\"> </span>",
+        "format": "&#x2004;<span color=\"#e64553\" size=\"x-large\"> </span>",
         "rotate": 0,
         "tooltip": false
     },

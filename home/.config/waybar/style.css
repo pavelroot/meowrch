@@ -1,10 +1,10 @@
-@define-color bar-bg rgba(30, 30, 46, 0);
-@define-color main-bg rgba(30, 30, 46, 0.8);
-@define-color main-fg rgba(180,190,254,1);
-@define-color wb-act-bg rgba(180,190,254,0.9);
-@define-color wb-act-fg rgba(0,0,0,0.7);
-@define-color wb-hvr-bg rgba(75,75,125,0.4);
-@define-color wb-hvr-fg rgba(174,170,240,0.8);
+@define-color bar-bg rgba(239, 241, 245, 0);
+@define-color main-bg rgba(239, 241, 245, 0.8);
+@define-color main-fg rgba(114, 135, 253, 1);
+@define-color wb-act-bg rgba(114, 135, 253, 0.9);
+@define-color wb-act-fg rgba(220, 224, 232, 0.7);
+@define-color wb-hvr-bg rgba(75,75,125, 0.4);
+@define-color wb-hvr-fg rgba(76, 79, 105,0.8);
 
 * {
     border: none;
@@ -35,13 +35,11 @@ tooltip {
 #workspaces button {
     box-shadow: none;
 	text-shadow: none;
-    padding: 0px;
+    padding: 0px 2px;
     border-radius: 9px;
-    margin-top: 3px;
-    margin-bottom: 3px;
+    margin-top: 2px;
+    margin-bottom: 2px;
     margin-left: 0px;
-    padding-left: 3px;
-    padding-right: 3px;
     margin-right: 0px;
     color: @main-fg;
     animation: ws_normal 20s ease-in-out 1;
@@ -50,10 +48,10 @@ tooltip {
 #workspaces button.active {
     background: @wb-act-bg;
     color: @wb-act-fg;
-    margin-left: 3px;
-    padding-left: 12px;
-    padding-right: 12px;
-    margin-right: 3px;
+    margin-left: 2px;
+    padding-left: 2px;
+    padding-right: 2px;
+    margin-right: 2px;
     animation: ws_active 20s ease-in-out 1;
     transition: all 0.4s cubic-bezier(.55,-0.68,.48,1.682);
 }
@@ -68,13 +66,11 @@ tooltip {
 #taskbar button {
     box-shadow: none;
 	text-shadow: none;
-    padding: 0px;
+    padding: 0px 2px;
     border-radius: 9px;
-    margin-top: 3px;
-    margin-bottom: 3px;
+    margin-top: 2px;
+    margin-bottom: 2px;
     margin-left: 0px;
-    padding-left: 3px;
-    padding-right: 3px;
     margin-right: 0px;
     color: @wb-color;
     animation: tb_normal 20s ease-in-out 1;
@@ -83,10 +79,10 @@ tooltip {
 #taskbar button.active {
     background: @wb-act-bg;
     color: @wb-act-color;
-    margin-left: 3px;
-    padding-left: 12px;
-    padding-right: 12px;
-    margin-right: 3px;
+    margin-left: 2px;
+    padding-left: 2px;
+    padding-right: 2px;
+    margin-right: 2px;
     animation: tb_active 20s ease-in-out 1;
     transition: all 0.4s cubic-bezier(.55,-0.68,.48,1.682);
 }
@@ -96,6 +92,18 @@ tooltip {
     color: @wb-hvr-color;
     animation: tb_hover 20s ease-in-out 1;
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+}
+
+#taskbar {
+    border-radius: 10px;
+    margin: 2px 0px 2px 0px;
+    padding: 4px 2px;
+}
+
+#tray {
+    border-radius: 10px;
+    margin: 2px 0px 2px 0px;
+    padding: 4px 2px;
 }
 
 #tray menu * {
@@ -110,23 +118,9 @@ tooltip {
 #tray,
 #workspaces,
 #taskbar,
-#cpu,
-#custom-cpuinfo,
-#memory,
-#custom-gpuinfo,
 #clock,
 #idle_inhibitor,
-#custom-battery,
-#custom-brightness,
-#custom-volume,
-#custom-microphone,
 #language,
-#custom-system-update,
-#custom-do-not-disturb,
-#custom-vpn,
-#custom-bluetooth,
-#custom-networkmanager,
-#custom-power,
 #custom-l_end,
 #custom-r_end {
     color: @main-fg;
@@ -135,6 +129,27 @@ tooltip {
     margin: 4px 0px 4px 0px;
     padding-left: 4px;
     padding-right: 4px;
+}
+
+#system-info {
+	background: @main-bg;
+	border-radius: 10px;
+	margin: 2px 0px 2px 0px;
+	padding: 4px 2px;
+}
+
+#system-levels {
+	background: @main-bg;
+	border-radius: 10px;
+	margin: 2px 0px 2px 0px;
+	padding: 4px 2px;
+}
+
+#control-panel {
+	background: @main-bg;
+	border-radius: 10px;
+	margin: 2px 0px 2px 0px;
+	padding: 4px 2px;
 }
 
 #custom-r_end {
@@ -152,4 +167,31 @@ tooltip {
 #custom-padd_bg {
     background: @main-bg;
     margin: 4px 0px 4px 0px;
+}
+
+#clock {
+    background: @main-bg;
+    border-radius: 10px;
+}
+
+#language {
+    background: @main-bg;
+    border-radius: 10px;
+}
+
+#clock-block {
+    background: @main-bg;
+    border-radius: 10px;
+    margin: 2px 0px 2px 0px;
+    padding: 4px 2px;
+}
+
+#workspaces {
+    border-radius: 10px;
+    margin: 2px 0px 2px 0px;
+    padding: 4px 2px;
+}
+
+#custom-cpu {
+    color: #1e66f5;
 }

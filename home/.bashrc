@@ -28,3 +28,8 @@ set PS1='[\u@\h \W]\$ '
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
+. "/home/pavel/.local/share/cargo/env"
+export XCURSOR_THEME=Bibata-Modern-Classic
+export XCURSOR_SIZE=24
+export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
+export _JAVA_AWT_WM_NONREPARENTING=1
