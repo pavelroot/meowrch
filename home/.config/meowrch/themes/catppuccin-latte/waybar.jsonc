@@ -54,12 +54,32 @@
 	"group/control-panel": {
 		"orientation": "vertical",
 		"modules": [
-			"custom/system-update",
-			"custom/do-not-disturb",
-			"custom/bluetooth",
-			"custom/networkmanager",
-			"custom/power"
+			"group/system-update-panel",
+			"group/do-not-disturb-panel", 
+			"group/bluetooth-panel",
+			"group/networkmanager-panel",
+			"group/power-panel"
 		]
+	},
+	"group/system-update-panel": {
+		"orientation": "vertical",
+		"modules": ["custom/system-update"]
+	},
+	"group/do-not-disturb-panel": {
+		"orientation": "vertical", 
+		"modules": ["custom/do-not-disturb"]
+	},
+	"group/bluetooth-panel": {
+		"orientation": "vertical",
+		"modules": ["custom/bluetooth"]
+	},
+	"group/networkmanager-panel": {
+		"orientation": "vertical",
+		"modules": ["custom/networkmanager"]
+	},
+	"group/power-panel": {
+		"orientation": "vertical",
+		"modules": ["custom/power"]
 	},
         
     //==> Left Modules
@@ -214,7 +234,7 @@
     "custom/system-update": {
         "exec": "sh ~/bin/system-update-vertical.sh --status --unupdated-color \"#df8e1d\" --updated-color \"#40a02b\" | cat",
         "return-type": "json",
-        "format": "&#x2004;&#x200A;<span size=\"x-large\">{} </span>",
+        "format": "<span size=\"x-large\">{}</span>",
         "rotate": 0,
         "on-click": "CHECKUPDATES_DB=\"/tmp/checkup-db-${UID}-$$\" sh ~/bin/system-update.sh",
         "interval": 86400,
@@ -223,7 +243,7 @@
     "custom/do-not-disturb": {
         "exec": "sh ~/bin/do-not-disturb.sh --status --disabled-color \"#e64553\" --enabled-color \"#40a02b\" | cat",
         "return-type": "raw",
-        "format": "&#x2004;<span size=\"x-large\">{}</span>",
+        "format": "<span size=\"x-large\">{}</span>",
         "interval": 1,
         "rotate": 0,
         "on-click": "sh ~/bin/do-not-disturb.sh",
@@ -239,7 +259,7 @@
         "tooltip": false
     },
     "custom/bluetooth": {
-        "format": " &#x2009;<span color=\"#1e66f5\" size=\"x-large\">󰂯 </span>",
+        "format": "<span color=\"#1e66f5\" size=\"x-large\">󰂯</span>",
         "interval": 3,
         "rotate": 0,
         "on-click": "blueman-manager",
@@ -248,7 +268,7 @@
     "custom/networkmanager": {
         "exec": "sh ~/bin/rofi-menus/network-manager.sh --status --disabled-color \"#e64553\" --enabled-color \"#40a02b\" | cat",
         "return-type": "raw",
-        "format": "&#x2004;<span size=\"x-large\">{}</span>",
+        "format": "<span size=\"x-large\">{}</span>",
         "interval": 3,
         "rotate": 0,
         "on-click": "sh ~/bin/rofi-menus/network-manager.sh",
