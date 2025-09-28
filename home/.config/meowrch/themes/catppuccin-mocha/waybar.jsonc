@@ -213,17 +213,17 @@
     },
     "custom/system-update": {
         "exec": "sh ~/bin/system-update-vertical.sh --status --unupdated-color \"#fab387\" --updated-color \"#a6e3a1\" | cat",
-        "return-type": "json",
-        "format": "&#x2004;&#x200A;<span size=\"x-large\">{} </span>",
+        "return-type": "raw",
+        "format": "{}&#x2004;",
+        "interval": 1,
         "rotate": 0,
         "on-click": "CHECKUPDATES_DB=\"/tmp/checkup-db-${UID}-$$\" sh ~/bin/system-update.sh",
-        "interval": 86400,
         "tooltip": false
     },
     "custom/do-not-disturb": {
         "exec": "sh ~/bin/do-not-disturb.sh --status --disabled-color \"#f38ba8\" --enabled-color \"#a6e3a1\" | cat",
         "return-type": "raw",
-        "format": "&#x2004;<span size=\"x-large\">{}</span>",
+        "format": "{}&#x2004;",
         "interval": 1,
         "rotate": 0,
         "on-click": "sh ~/bin/do-not-disturb.sh",
@@ -232,15 +232,17 @@
     "custom/vpn": {
         "exec": "sh ~/bin/rofi-menus/vpn-manager.sh --status --disabled-color \"#f38ba8\" --enabled-color \"#a6e3a1\" | cat",
         "return-type": "raw",
-        "format": "&#x2004;<span size=\"x-large\">{}</span>",
-        "interval": 3,
+        "format": "{}&#x2004;",
+        "interval": 1,
         "rotate": 0,
         "on-click": "sh ~/bin/rofi-menus/vpn-manager.sh",
         "tooltip": false
     },
     "custom/bluetooth": {
-        "format": " &#x2009;<span color=\"#89b4fa\" size=\"x-large\">󰂯 </span>",
-        "interval": 3,
+        "exec": "echo '<span color=\"#89b4fa\" size=\"x-large\">󰂯</span>'",
+        "return-type": "raw",
+        "format": "{}&#x2004;",
+        "interval": 1,
         "rotate": 0,
         "on-click": "blueman-manager",
         "tooltip": false
@@ -248,16 +250,19 @@
     "custom/networkmanager": {
         "exec": "sh ~/bin/rofi-menus/network-manager.sh --status --disabled-color \"#f38ba8\" --enabled-color \"#a6e3a1\" | cat",
         "return-type": "raw",
-        "format": "&#x2004;<span size=\"x-large\">{}</span>",
-        "interval": 3,
+        "format": "{}&#x2004;",
+        "interval": 1,
         "rotate": 0,
         "on-click": "sh ~/bin/rofi-menus/network-manager.sh",
         "tooltip": false
     },
     "custom/power": {
-        "on-click": "sh ~/bin/rofi-menus/powermenu.sh",
-        "format": "&#x2004;<span color=\"#f38ba8\" size=\"x-large\"> </span>",
+        "exec": "echo '<span color=\"#f38ba8\" size=\"x-large\"></span>'",
+        "return-type": "raw",
+        "format": "{}&#x2004;",
+        "interval": 1,
         "rotate": 0,
+        "on-click": "sh ~/bin/rofi-menus/powermenu.sh",
         "tooltip": false
     },
 

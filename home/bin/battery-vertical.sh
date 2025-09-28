@@ -13,8 +13,8 @@ FLAG_FILE="/tmp/battery_low.flag"
 LOW_BATTERY_THRESHOLD=15
 CHARGING_ICONS=("󰢟 " "󰢜 " "󰂆 " "󰂇 " "󰂈 " "󰢝 " "󰂉 " "󰢞 " "󰂊 " "󰂋 " "󰂅 ")
 SESSION_TYPE="$XDG_SESSION_TYPE"
-DISCHARGED_COLOR="#D35F5D"
-CHARGED_COLOR="#A0E8A2"
+DISCHARGED_COLOR="#5D2E2D"
+CHARGED_COLOR="#1657c7"
 
 has_battery() {
     local battery_path=$(upower -e | grep 'BAT')

@@ -92,7 +92,7 @@ print_status() {
 
     # Формат: только иконка, цвет по наличию обновлений (оранжевый если есть, зелёный если нет)
     if [ "$SESSION_TYPE" == "wayland" ]; then
-        echo "{\"text\": \"<span color=\\\"$color\\\">󰮯</span>\"}"
+        echo "<span color=\"$color\" size=\"x-large\">󰮯</span>"
     elif [ "$SESSION_TYPE" == "x11" ]; then
         echo "%{F$color}󰮯%{F-}"
     fi

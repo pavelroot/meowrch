@@ -271,7 +271,7 @@ if __name__ == "__main__":
 		if SESSION_TYPE == "x11":
 			print("%{F" + color + "}" + cpu['text'] + "%{F-}")
 		elif SESSION_TYPE == "wayland":
-			cpu["text"] = cpu['text']
+			cpu["text"] = f"<span color=\"{color}\">{cpu['text']}</span>"
 			print(json.dumps(cpu))
 		else:
 			print("N/A")

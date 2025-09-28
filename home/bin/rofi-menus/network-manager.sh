@@ -13,8 +13,8 @@
 SESSION_TYPE="$XDG_SESSION_TYPE"
 ENABLED_COLOR="#A3BE8C"
 DISABLED_COLOR="#D35F5E"
-SIGNAL_ICONS=("󰤟 " "󰤢 " "󰤥 " "󰤨 ")
-SECURED_SIGNAL_ICONS=("󰤡 " "󰤤 " "󰤧 " "󰤪 ")
+SIGNAL_ICONS=("󰤟" "󰤢" "󰤥" "󰤨")
+SECURED_SIGNAL_ICONS=("󰤡" "󰤤" "󰤧" "󰤪")
 WIFI_CONNECTED_ICON=" "
 ETHERNET_CONNECTED_ICON=" "
 
@@ -37,16 +37,16 @@ get_status() {
             status_icon="$signal_icon"
             local status_color=$ENABLED_COLOR
         else
-            status_icon=" "
+            status_icon="󰤧"
             local status_color=$DISABLED_COLOR
         fi
     else
-        local status_icon=" "
+        local status_icon="󰤧"
         local status_color=$DISABLED_COLOR
     fi
 
     if [[ "$SESSION_TYPE" == "wayland" ]]; then
-        echo "<span color=\"$status_color\">$status_icon</span>"
+        echo "<span color=\"$status_color\" size=\"x-large\">$status_icon</span>"
     elif [[ "$SESSION_TYPE" == "x11" ]]; then
         echo "%{F$status_color}$status_icon%{F-}"
     fi
@@ -219,9 +219,11 @@ main_menu() {
 
     ##==> Получаем кнопки действий и функцианал для них
     #######################################################
-    local wifi_status=$(nmcli -fields WIFI g)
+    local wifi_radio_status=$(nmcli -fields WIFI g)
     local wifi_toggle
-    if [[ "$wifi_status" =~ "enabled" ]]; then
+    # Проверяем, может ли WiFi устройство сканировать сети (это означает, что оно активно)
+    local wifi_can_scan=$(nmcli device wifi list 2>/dev/null | wc -l)
+    if echo "$wifi_radio_status" | grep -q "включено" && [[ "$wifi_can_scan" -gt 1 ]]; then
         wifi_toggle="󱛅  Disable Wi-Fi"
         wifi_toggle_command="off"
         manage_wifi_btn="\n󱓥 Manage Wi-Fi"
@@ -236,7 +238,16 @@ main_menu() {
     local chosen_option=$(echo -e "$wifi_toggle$manage_wifi_btn\n󱓥 Manage Ethernet" | rofi -dmenu -p " Network Management: ")
     case $chosen_option in
         "$wifi_toggle")
-            nmcli radio wifi $wifi_toggle_command
+            if [[ "$wifi_toggle_command" == "on" ]]; then
+                nmcli radio wifi on
+                # Активируем WiFi устройство
+                nmcli device set wlan0 managed yes
+                sleep 1
+                notify-send "WiFi Enabled" "WiFi has been enabled and is ready to connect."
+            else
+                nmcli radio wifi off
+                notify-send "WiFi Disabled" "WiFi has been disabled."
+            fi
             ;;
         "󱓥 Manage Wi-Fi")
             manage_wifi

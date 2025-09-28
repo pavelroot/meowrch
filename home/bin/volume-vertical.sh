@@ -10,8 +10,8 @@
 # Github: https://github.com/DIMFLIX-OFFICIAL
 
 SESSION_TYPE="$XDG_SESSION_TYPE"
-ENABLED_COLOR="#A3BE8C"
-DISABLED_COLOR="#D35F5E"
+ENABLED_COLOR="#1657c7"
+DISABLED_COLOR="#5D2E2D"
 
 print_error() {
     echo "Usage: $0 --device <input|output> --action <increase|decrease|toggle> [--status] [--enabled-color] [--disabled-color]"

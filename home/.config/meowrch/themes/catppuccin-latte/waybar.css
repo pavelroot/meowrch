@@ -1,6 +1,6 @@
 @define-color bar-bg rgba(239, 241, 245, 0);
 @define-color main-bg rgba(239, 241, 245, 0.8);
-@define-color main-fg rgba(114, 135, 253, 1);
+@define-color main-fg rgba(80, 95, 180, 1);
 @define-color wb-act-bg rgba(114, 135, 253, 0.9);
 @define-color wb-act-fg rgba(220, 224, 232, 0.7);
 @define-color wb-hvr-bg rgba(75,75,125, 0.4);
@@ -100,12 +100,6 @@ tooltip {
     padding: 4px 2px;
 }
 
-#tray {
-    border-radius: 10px;
-    margin: 2px 0px 2px 0px;
-    padding: 4px 2px;
-}
-
 #tray menu * {
     min-height: 16px
 }
@@ -118,8 +112,6 @@ tooltip {
 #tray,
 #workspaces,
 #taskbar,
-#clock,
-#idle_inhibitor,
 #language,
 #custom-l_end,
 #custom-r_end {
@@ -145,12 +137,20 @@ tooltip {
 	padding: 4px 2px;
 }
 
+#clock-block {
+	background: @main-bg;
+	border-radius: 10px;
+	margin: 2px 0px 2px 0px;
+	padding: 4px 2px;
+}
+
 #control-panel {
 	background: @main-bg;
 	border-radius: 10px;
 	margin: 2px 0px 2px 0px;
 	padding: 4px 2px;
 }
+
 
 #custom-r_end {
     border-radius: 0px 21px 21px 0px;
@@ -169,9 +169,34 @@ tooltip {
     margin: 4px 0px 4px 0px;
 }
 
-#clock {
-    background: @main-bg;
+#custom-cpu {
+    padding: 0px;
+    margin: 0px;
+    color: #f5c2e7;
+}
+
+#custom-ram {
+    padding: 0px;
+    margin: 0px;
+    color: #fab387;
+}
+
+#custom-gpu {
+    padding: 0px;
+    margin: 0px;
+    color: #f5e0dc;
+}
+
+
+#clock,
+#idle_inhibitor {
+    background: transparent;
     border-radius: 10px;
+    color: @main-fg;
+    opacity: 1;
+    margin: 4px 0px 4px 0px;
+    padding-left: 4px;
+    padding-right: 4px;
 }
 
 #language {
@@ -186,12 +211,17 @@ tooltip {
     padding: 4px 2px;
 }
 
+#tray {
+    border-radius: 10px;
+    margin: 2px 0px 2px 0px;
+    padding: 4px 2px;
+}
+
+/* центрирование иконок осуществляется через #control-panel */
+
 #workspaces {
     border-radius: 10px;
     margin: 2px 0px 2px 0px;
     padding: 4px 2px;
 }
 
-#custom-cpu {
-    color: #1e66f5;
-}

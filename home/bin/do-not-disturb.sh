@@ -31,15 +31,15 @@ toggle_notifications() {
 
 get_status() {
     if [ "$(dunstctl is-paused)" == "true" ]; then
-        local icon="󱏧 "
+        local icon="󱏧"
         local color=$DISABLED_COLOR
     else
-        local icon="󱅫 "
+        local icon="󱅫"
         local color=$ENABLED_COLOR
     fi
 
     if [[ "$SESSION_TYPE" == "wayland" ]]; then
-        echo "<span color=\"$color\">$icon</span>"
+        echo "<span color=\"$color\" size=\"x-large\">$icon</span>"
     elif [[ "$SESSION_TYPE" == "x11" ]]; then
         echo "%{F$color}$icon%{F-}"
     fi
